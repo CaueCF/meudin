@@ -33,7 +33,12 @@ class SaldoLivre extends StatelessWidget {
                 padding: EdgeInsets.only(right: 8.0),
                 child: Icon(Icons.account_balance, color: Colors.white),
               ),
-              Text("R\$$saldo", style: const TextStyle(fontSize: 20, color: Colors.white)),
+              Text("R\$$saldo",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    overflow: TextOverflow.clip,
+                  )),
             ],
           ),
         ],

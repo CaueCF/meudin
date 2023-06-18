@@ -52,12 +52,14 @@ class Balanco extends StatelessWidget {
           width: 140,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
               tipoIcon,
-              Text(
-                NumberFormat.simpleCurrency(decimalDigits: 2).format(valor),
-                style: estilo,
-                textAlign: TextAlign.center,
+              Flexible(
+                child: Text(
+                  NumberFormat.simpleCurrency(decimalDigits: 2).format(valor),
+                  style: estilo,
+                ),
               ),
             ],
           ),

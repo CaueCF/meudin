@@ -10,6 +10,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(LancamentoAdapter());
+  // ignore: unused_local_variable
   var box = await Hive.openBox('lancamentos');
 
   runApp(const MyApp());

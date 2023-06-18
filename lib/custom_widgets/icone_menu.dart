@@ -22,7 +22,7 @@ class IconeMenu extends StatelessWidget {
         cor = MyColor.entreterimento;
         icone = Icons.sports_esports;
         break;
-      case "Trabalho":
+      case "Salário":
         cor = MyColor.salario;
         icone = Icons.work;
         break;

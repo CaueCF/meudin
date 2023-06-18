@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meudin/Controllers/home_controller.dart';
 import 'package:meudin/models/lancamento.dart';
 
 import 'icone_menu.dart';
@@ -17,10 +18,11 @@ class _MeuFormState extends State<MeuForm> {
 
   final List<DropdownMenuItem> itens = [
     // //Vazio
-    // const DropdownMenuItem(
-    //   value: " ",
-    //   child: Text(""),
-    // ),
+    const DropdownMenuItem(
+      value: "selecione",
+      enabled: false,
+      child: Text("Selecione a categoria"),
+    ),
 
     //Entreterimento
     const DropdownMenuItem(
@@ -36,17 +38,57 @@ class _MeuFormState extends State<MeuForm> {
 
     //Salario
     const DropdownMenuItem(
-      value: "Trabalho",
-      child: Text("Trabalho"),
+      value: "Salário",
+      child: Text("Salário"),
     ),
   ];
 
   String dropValor = " ";
 
+  Lancamento l = Lancamento.empty();
+  HomeController controller = HomeController();
+
+  InputBorder borda = const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(20)),
+  );
+
+  InputDecoration decoracaoPadrao({String label = "", Widget? icone}) {
+    return InputDecoration(
+      filled: true,
+      fillColor: Colors.white,
+      labelText: label,
+
+      prefixIcon: icone,
+
+      //Estilo
+      labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+
+      floatingLabelStyle: const TextStyle(
+        backgroundColor: Colors.white,
+      ),
+      border: borda,
+    );
+  }
+
   @override
   void initState() {
-    dropValor = itens[1].value;
+    dropValor = itens[0].value;
+    l.tipo = dropValor;
+    l.io = testaTipo(dropValor);
     super.initState();
+  }
+
+  bool testaTipo(String s) {
+    switch (s) {
+      case "Comida":
+        return false;
+      case "Entreterimento":
+        return false;
+      case "Salário":
+        return true;
+      default:
+        return false;
+    }
   }
 
   @override
@@ -63,18 +105,7 @@ class _MeuFormState extends State<MeuForm> {
 
               TextFormField(
                 //Decoração
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Título',
-
-                  //Estilo
-                  hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                decoration: decoracaoPadrao(label: "Titulo"),
 
                 //Validação
                 validator: (String? value) {
@@ -85,7 +116,9 @@ class _MeuFormState extends State<MeuForm> {
                   return null;
                 },
 
-                //onSaved: (String? value) {},
+                onSaved: (String? value) {
+                  l.titulo = value!;
+                },
               ),
               const SizedBox(height: 5),
               //
@@ -97,31 +130,19 @@ class _MeuFormState extends State<MeuForm> {
                 padding: const EdgeInsets.only(bottom: 5),
 
                 //Decoração
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  prefixIcon: IconeMenu(s: dropValor),
-                  label: const Padding(
-                    padding: EdgeInsets.only(top: 15, left: 10),
-                    child: Text(
-                      "Categoria",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+                decoration: decoracaoPadrao(icone: IconeMenu(s: dropValor)),
 
-                  //Estilo
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                validator: (value) {
+                  if (value == itens[0].value) {
+                    return 'Por favor selecione a categoria!';
+                  }
+                  return null;
+                },
 
                 onChanged: (value) {
                   dropValor = value;
-
+                  l.tipo = value;
+                  l.io = testaTipo(dropValor);
                   setState(() {
                     dropValor;
                   });
@@ -135,18 +156,7 @@ class _MeuFormState extends State<MeuForm> {
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 //Decoração
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Valor',
-
-                  //Estilo
-                  hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                decoration: decoracaoPadrao(label: "Valor"),
 
                 //Validação
                 validator: (String? value) {
@@ -156,7 +166,9 @@ class _MeuFormState extends State<MeuForm> {
                   return null;
                 },
 
-                //onSaved: (String? value) {},
+                onSaved: (String? value) {
+                  l.preco = double.parse(value!);
+                },
               ),
               const SizedBox(height: 5),
 
@@ -165,28 +177,11 @@ class _MeuFormState extends State<MeuForm> {
               //Observações
               TextFormField(
                 //Decoração
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Descrição',
+                decoration: decoracaoPadrao(label: "Descrição"),
 
-                  //Estilo
-                  hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-
-                //Validação
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Favor inserir informações';
-                  }
-                  return null;
+                onSaved: (String? value) {
+                  l.infos = value ?? " ";
                 },
-
-                onSaved: (String? value) {},
               ),
 
               //Salvar
@@ -198,7 +193,9 @@ class _MeuFormState extends State<MeuForm> {
                       // Validate will return true if the form is valid, or
                       // false if the form is invalid.
                       if (_formKey.currentState!.validate()) {
-                        // Process data.
+                        _formKey.currentState!.save();
+                        controller.adicionaItem(l);
+                        Navigator.of(context).pop();
                       }
                     },
                     child: const Text('Salvar'),

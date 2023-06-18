@@ -4,7 +4,7 @@ part 'lancamento.g.dart';
 
 @HiveType(typeId: 1)
 class Lancamento {
-  const Lancamento({
+  Lancamento({
     required this.io,
     required this.titulo,
     required this.tipo,
@@ -13,23 +13,31 @@ class Lancamento {
     required this.preco,
   });
 
+  Lancamento.empty()
+      : io = false,
+        titulo = " ",
+        tipo = " ",
+        data = " ",
+        infos = " ",
+        preco = 0.0;
+
   @HiveField(0)
-  final bool io;
+  bool io;
   //true = entrada
   //false = saida
 
   @HiveField(1)
-  final String titulo;
+  String titulo;
 
   @HiveField(2)
-  final String tipo;
+  String tipo;
 
   @HiveField(3)
-  final String data;
+  String data;
 
   @HiveField(4)
-  final String infos;
+  String infos;
 
   @HiveField(5)
-  final double preco;
+  double preco;
 }

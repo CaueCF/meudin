@@ -8,7 +8,7 @@ class Database {
 
   void criarDadosIniciais() {
     dados = <Lancamento>[
-      const Lancamento(
+      Lancamento(
         io: false,
         titulo: "iFood",
         tipo: "Comida",
@@ -16,7 +16,7 @@ class Database {
         infos: "daysgdasygdasd",
         preco: 10.00,
       ),
-      const Lancamento(
+      Lancamento(
         io: false,
         tipo: "Entreterimento",
         preco: 50.00,
@@ -24,7 +24,7 @@ class Database {
         data: "15/01 19:00",
         infos: "asdgaisgdaisd",
       ),
-      const Lancamento(
+      Lancamento(
         io: true,
         tipo: "Salário",
         preco: 400.00,
@@ -32,7 +32,7 @@ class Database {
         data: "05/01 10:00",
         infos: "äsjdhausdhueaeufga",
       ),
-      const Lancamento(
+      Lancamento(
         io: false,
         tipo: "Comida",
         preco: 10.00,
@@ -40,7 +40,7 @@ class Database {
         data: "12/01 20:00",
         infos: "daysgdasygdasd",
       ),
-      const Lancamento(
+      Lancamento(
         io: false,
         tipo: "Entreterimento",
         preco: 50.00,
@@ -48,7 +48,7 @@ class Database {
         data: "15/01 19:00",
         infos: "asdgaisgdaisd",
       ),
-      const Lancamento(
+      Lancamento(
         io: true,
         tipo: "Salário",
         preco: 400.00,
@@ -56,7 +56,7 @@ class Database {
         data: "05/01 10:00",
         infos: "äsjdhausdhueaeufga",
       ),
-      const Lancamento(
+      Lancamento(
         io: false,
         tipo: "Comida",
         preco: 10.00,
@@ -64,7 +64,7 @@ class Database {
         data: "12/01 20:00",
         infos: "daysgdasygdasd",
       ),
-      const Lancamento(
+      Lancamento(
         io: false,
         tipo: "Entreterimento",
         preco: 50.00,
