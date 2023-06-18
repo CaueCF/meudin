@@ -1,0 +1,220 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:meudin/Controllers/home_controller.dart';
+import 'package:meudin/assets/colors/my_colors.dart';
+import 'package:meudin/models/lancamento.dart';
+
+class InfoPage extends StatelessWidget {
+  const InfoPage({
+    super.key,
+    required this.altura,
+    required this.largura,
+    required this.icone,
+    required this.cor,
+    required this.custo,
+    required this.l,
+  });
+
+  final double altura, largura;
+  final IconData icone;
+  final Color cor, custo;
+  final Lancamento l;
+
+/*
+
+ARRUMAR O CONTROLLER NA PÁGINA
+
+*/
+  @override
+  Widget build(BuildContext context) {
+    HomeController home = HomeController();
+
+    //
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: MyColor.azul.shade100,
+        appBar: AppBar(
+          backgroundColor: MyColor.azul.shade800,
+          iconTheme: const IconThemeData(color: Colors.white, size: 30),
+          actions: [
+            //
+            //Ícone para deletar
+            IconButton(
+              onPressed: () {
+                //Dialog para confirmar se deseja excluir o lançamento
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertaApagar(home: home, l: l);
+                    });
+              },
+              icon: const Icon(Icons.delete),
+            ),
+          ],
+        ),
+
+        //
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
+          child: Center(
+            child: Container(
+              height: altura * 0.50,
+              width: largura,
+              decoration: BoxDecoration(
+                color: const Color(0xFFDADADA),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      //Ícone
+                      Container(
+                        height: altura * 0.2,
+                        width: largura * 0.4,
+                        decoration: BoxDecoration(
+                          color: cor,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                          ),
+                        ),
+                        child: Icon(
+                          icone,
+                          size: 80,
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      //Valor e Títlo
+                      Padding(
+                        padding: const EdgeInsets.only(top: 18.0, left: 18),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            //
+                            //Titulo
+                            Text(
+                              l.titulo,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            //Data
+                            Row(children: [
+                              const Icon(Icons.calendar_today),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 2,
+                                ),
+                                child: Text(
+                                  l.data,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ]),
+
+                            //Preço
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                              decoration: BoxDecoration(
+                                color: custo,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                "${l.io ? "" : "-"}${NumberFormat.simpleCurrency(
+                                  decimalDigits: 2,
+                                ).format(l.preco)}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //Descrição
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 21, horizontal: 17),
+                    child: Container(
+                      height: altura * 0.24,
+                      width: largura,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 17),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Descrição:",
+                              style: TextStyle(color: Color(0xFF424040)),
+                            ),
+                            Text(
+                              l.infos,
+                              textAlign: TextAlign.justify,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AlertaApagar extends StatelessWidget {
+  const AlertaApagar({
+    super.key,
+    required this.home,
+    required this.l,
+  });
+
+  final HomeController home;
+  final Lancamento l;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text("Atenção"),
+      content: const Text("Tem certeza que deseja excluir esse lançamento?"),
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
+      actions: <Widget>[
+        ElevatedButton(
+          child: const Text("CANCELAR"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        ElevatedButton(
+          onPressed: () {
+            home.apagaItem(l);
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          },
+          child: const Text("APAGAR"),
+        ),
+      ],
+    );
+  }
+}
