@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_file.dart';
+import 'package:intl/intl.dart';
 import 'package:meudin/Controllers/home_controller.dart';
 import 'package:meudin/models/lancamento.dart';
 
@@ -190,6 +191,10 @@ class _MeuFormState extends State<MeuForm> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
+                      initializeDateFormatting('pt_br', '').then((_) {
+                        l.data = DateFormat('dd-MM-yyyy hh:mm').format(DateTime.now());
+                      });
+                      print("data: " + l.data);
                       // Validate will return true if the form is valid, or
                       // false if the form is invalid.
                       if (_formKey.currentState!.validate()) {

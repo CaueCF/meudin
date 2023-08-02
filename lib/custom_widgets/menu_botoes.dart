@@ -39,8 +39,8 @@ class MenuBotoes extends StatelessWidget {
 
           //
           Botao(
-            titulo: "Gráficos",
-            icone: Icons.auto_graph,
+            titulo: "-",
+            icone: Icons.wysiwyg,
             function: () {},
             largura: largura,
             altura: altura,
