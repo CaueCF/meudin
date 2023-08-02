@@ -19,6 +19,7 @@ class SaldoLivre extends StatelessWidget {
       ),
       height: 53,
       width: 162,
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -30,15 +31,18 @@ class SaldoLivre extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(right: 8.0),
+                padding: EdgeInsets.only(right: 5.0),
                 child: Icon(Icons.account_balance, color: Colors.white),
               ),
-              Text("R\$$saldo",
+              Expanded(
+                child: Text(
+                  "R\$$saldo",
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                    overflow: TextOverflow.clip,
-                  )),
+                  ),
+                ),
+              ),
             ],
           ),
         ],

@@ -153,8 +153,8 @@ class _MeuFormState extends State<MeuForm> {
               //
               //Valor
               TextFormField(
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 //Decoração
                 decoration: decoracaoPadrao(label: "Valor"),
 

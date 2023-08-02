@@ -86,65 +86,16 @@ ARRUMAR O CONTROLLER NA PÁGINA
                       ),
 
                       //Valor e Títlo
-                      Padding(
-                        padding: const EdgeInsets.only(top: 18.0, left: 18),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //
-                            //Titulo
-                            Text(
-                              l.titulo,
-                              style: const TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-                            //Data
-                            Row(children: [
-                              const Icon(Icons.calendar_today),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 2,
-                                ),
-                                child: Text(
-                                  l.data,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                            ]),
-
-                            //Preço
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: custo,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                "${l.io ? "" : "-"}${NumberFormat.simpleCurrency(
-                                  decimalDigits: 2,
-                                ).format(l.preco)}",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      InfoValorTitulo(l: l, custo: custo),
                     ],
                   ),
 
                   //Descrição
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 21, horizontal: 17),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 21,
+                      horizontal: 17,
+                    ),
                     child: Container(
                       height: altura * 0.24,
                       width: largura,
@@ -153,7 +104,10 @@ ARRUMAR O CONTROLLER NA PÁGINA
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 17),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 11,
+                          vertical: 17,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -177,6 +131,84 @@ ARRUMAR O CONTROLLER NA PÁGINA
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class InfoValorTitulo extends StatelessWidget {
+  const InfoValorTitulo({
+    super.key,
+    required this.l,
+    required this.custo,
+  });
+
+  final Lancamento l;
+  final Color custo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 18.0, left: 18),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //
+            //Titulo
+            Text(
+              l.titulo,
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            //Data
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(Icons.calendar_today),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 2,
+                  ),
+                  child: Text(
+                    l.data,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            //Preço
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4,
+                horizontal: 10,
+              ),
+              decoration: BoxDecoration(
+                color: custo,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                "${l.io ? "" : "-"}${NumberFormat.simpleCurrency(
+                  decimalDigits: 2,
+                ).format(l.preco)}",
+                maxLines: 1,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
