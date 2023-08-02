@@ -52,13 +52,13 @@ class Balanco extends StatelessWidget {
           width: 140,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               tipoIcon,
-              Flexible(
+              Expanded(
                 child: Text(
                   NumberFormat.simpleCurrency(decimalDigits: 2).format(valor),
                   style: estilo,
+                  maxLines: 1,
                 ),
               ),
             ],
