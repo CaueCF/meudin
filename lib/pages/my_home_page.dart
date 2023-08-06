@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: MyColor.azul.shade100,
+        backgroundColor: MyColor.caribeancurrent.shade50,
         body: CustomScrollView(
           slivers: <Widget>[
             CustomSliverAppBar(altura: altura, largura: largura),

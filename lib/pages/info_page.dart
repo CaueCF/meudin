@@ -32,9 +32,9 @@ ARRUMAR O CONTROLLER NA PÁGINA
     //
     return SafeArea(
       child: Scaffold(
-        backgroundColor: MyColor.azul.shade100,
+        backgroundColor: MyColor.neonblue.shade100,
         appBar: AppBar(
-          backgroundColor: MyColor.azul.shade800,
+          backgroundColor: MyColor.neonblue.shade800,
           iconTheme: const IconThemeData(color: Colors.white, size: 30),
           actions: [
             //
@@ -149,6 +149,8 @@ class InfoValorTitulo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> d = l.data.split(" ");
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(top: 18.0, left: 18),
@@ -170,17 +172,28 @@ class InfoValorTitulo extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(Icons.calendar_today),
+                const Icon(Icons.calendar_today, size: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 2,
                   ),
-                  child: Text(
-                    l.data,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        d.elementAt(0),
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      Text(
+                        d.elementAt(1),
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

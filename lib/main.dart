@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: MyColor.azul,
+        primarySwatch: MyColor.neonblue,
       ),
       home: const MyHomePage(title: 'Pagina inicial'),
     );

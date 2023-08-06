@@ -19,11 +19,11 @@ class Balanco extends StatelessWidget {
     Icon tipoIcon;
 
     if (tipo) {
-      estilo = const TextStyle(color: MyColor.gasto, fontSize: 20);
+      estilo = const TextStyle(color: MyColor.vermelhoimperial, fontSize: 20);
       val = "Gasto";
       tipoIcon = Icon(Icons.keyboard_arrow_down, color: estilo.color);
     } else {
-      estilo = const TextStyle(color: MyColor.ganho, fontSize: 20);
+      estilo = TextStyle(color: MyColor.erin.shade700, fontSize: 20);
       val = "Ganho";
       tipoIcon = Icon(Icons.keyboard_arrow_up, color: estilo.color);
     }
@@ -45,7 +45,7 @@ class Balanco extends StatelessWidget {
         //Valor
         Container(
           decoration: BoxDecoration(
-            color: MyColor.azul.shade300,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           height: 35,

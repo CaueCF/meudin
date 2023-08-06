@@ -14,7 +14,7 @@ class SaldoLivre extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: MyColor.azul,
+        color: MyColor.neonblue,
         borderRadius: BorderRadius.circular(20),
       ),
       height: 53,

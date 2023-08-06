@@ -33,7 +33,7 @@ class Botao extends StatelessWidget {
               onPressed: function,
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
-                backgroundColor: MyColor.azul.shade200,
+                backgroundColor: MyColor.neonblue.shade200,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

@@ -60,7 +60,7 @@ class CardLancamento extends StatelessWidget {
                 largura: largura,
                 cor: cor,
                 icone: icone,
-                custo: l.io ? MyColor.ganho : MyColor.gasto,
+                custo: l.io ? MyColor.erin : MyColor.vermelhoimperial,
                 l: l,
               ),
             ),
@@ -167,7 +167,7 @@ class CardPrecos extends StatelessWidget {
         Text(
           l.io ? "" : "- ",
           style: TextStyle(
-            color: l.io ? MyColor.ganho : MyColor.gasto,
+            color: l.io ? MyColor.erin : MyColor.vermelhoimperial,
           ),
         ),
         Text(
@@ -176,7 +176,7 @@ class CardPrecos extends StatelessWidget {
       """
               .trim(),
           style: TextStyle(
-            color: l.io ? MyColor.ganho : MyColor.gasto,
+            color: l.io ? MyColor.erin : MyColor.vermelhoimperial,
           ),
         ),
       ],

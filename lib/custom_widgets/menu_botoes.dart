@@ -57,8 +57,8 @@ class MenuBotoes extends StatelessWidget {
 
           //
           Botao(
-            titulo: "-",
-            icone: Icons.wysiwyg,
+            titulo: "Apagar todos",
+            icone: Icons.dangerous_outlined,
             function: () {},
             largura: largura,
             altura: altura,

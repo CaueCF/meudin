@@ -49,7 +49,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           pinned: true,
 
           //Cor
-          backgroundColor: MyColor.azul.shade800,
+          backgroundColor: MyColor.caribeancurrent,
           expandedHeight: widget.altura * (0.32),
 
           //Borda
