@@ -30,12 +30,13 @@ class Perfil extends StatelessWidget {
             width: 54.57,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 5),
             child: Text(
               nome,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 18,
               ),
+              maxLines: 1,
             ),
           ),
         ],

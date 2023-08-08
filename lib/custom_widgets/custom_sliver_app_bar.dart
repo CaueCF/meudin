@@ -49,7 +49,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           pinned: true,
 
           //Cor
-          backgroundColor: MyColor.caribeancurrent,
+          backgroundColor: MyColor.tema,
           expandedHeight: widget.altura * (0.32),
 
           //Borda
@@ -63,7 +63,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //Perfil
-              const Perfil(nome: "Cauê"),
+              const Perfil(nome: "Usuário"),
 
               //Saldo Livre
               SaldoLivre(saldo: disponivel),

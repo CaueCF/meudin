@@ -32,9 +32,9 @@ ARRUMAR O CONTROLLER NA PÁGINA
     //
     return SafeArea(
       child: Scaffold(
-        backgroundColor: MyColor.neonblue.shade100,
+        backgroundColor: MyColor.backgroung,
         appBar: AppBar(
-          backgroundColor: MyColor.neonblue.shade800,
+          backgroundColor: MyColor.caribeancurrent.shade800,
           iconTheme: const IconThemeData(color: Colors.white, size: 30),
           actions: [
             //
@@ -62,31 +62,37 @@ ARRUMAR O CONTROLLER NA PÁGINA
               width: largura,
               decoration: BoxDecoration(
                 color: const Color(0xFFDADADA),
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(25),
               ),
               child: Column(
                 children: [
                   Row(
                     children: [
                       //Ícone
-                      Container(
-                        height: altura * 0.2,
-                        width: largura * 0.4,
-                        decoration: BoxDecoration(
-                          color: cor,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(30),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          height: altura * 0.2,
+                          width: largura * 0.4,
+                          decoration: BoxDecoration(
+                            color: cor,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                            ),
                           ),
-                        ),
-                        child: Icon(
-                          icone,
-                          size: 80,
-                          color: Colors.white,
+                          child: Icon(
+                            icone,
+                            size: 80,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
 
                       //Valor e Títlo
-                      InfoValorTitulo(l: l, custo: custo),
+                      Flexible(
+                        flex: 2,
+                        child: InfoValorTitulo(l: l, custo: custo),
+                      ),
                     ],
                   ),
 
@@ -117,7 +123,7 @@ ARRUMAR O CONTROLLER NA PÁGINA
                             ),
                             Text(
                               l.infos,
-                              textAlign: TextAlign.justify,
+                              //textAlign: TextAlign.justify,
                               style: const TextStyle(
                                 fontSize: 18,
                               ),
@@ -171,6 +177,7 @@ class InfoValorTitulo extends StatelessWidget {
             //Data
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.calendar_today, size: 30),
                 Padding(
@@ -215,8 +222,8 @@ class InfoValorTitulo extends StatelessWidget {
                 ).format(l.preco)}",
                 maxLines: 1,
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  //fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),

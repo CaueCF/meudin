@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:meudin/assets/colors/my_colors.dart';
 import 'package:meudin/pages/info_page.dart';
@@ -60,7 +61,7 @@ class CardLancamento extends StatelessWidget {
                 largura: largura,
                 cor: cor,
                 icone: icone,
-                custo: l.io ? MyColor.erin : MyColor.vermelhoimperial,
+                custo: l.io ? MyColor.ganho : MyColor.gasto,
                 l: l,
               ),
             ),
@@ -162,24 +163,31 @@ class CardPrecos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          l.io ? "" : "- ",
-          style: TextStyle(
-            color: l.io ? MyColor.erin : MyColor.vermelhoimperial,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: l.io ? MyColor.ganho : MyColor.gasto,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Row(
+        children: [
+          Text(
+            l.io ? "" : "- ",
+            style: const TextStyle(
+              color: Colors.black,
+            ),
           ),
-        ),
-        Text(
-          """
-      ${NumberFormat.simpleCurrency(decimalDigits: 2).format(l.preco)}
-      """
-              .trim(),
-          style: TextStyle(
-            color: l.io ? MyColor.erin : MyColor.vermelhoimperial,
+          Text(
+            """
+        ${NumberFormat.simpleCurrency(decimalDigits: 2).format(l.preco)}
+        """
+                .trim(),
+            style: const TextStyle(
+              color: Colors.black,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

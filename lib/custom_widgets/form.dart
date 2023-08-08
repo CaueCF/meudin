@@ -8,7 +8,9 @@ import 'icone_menu.dart';
 //import 'package:intl/intl.dart';
 
 class MeuForm extends StatefulWidget {
-  const MeuForm({super.key});
+  const MeuForm({super.key, required this.tema});
+
+  final Color tema;
 
   @override
   State<MeuForm> createState() => _MeuFormState();
@@ -108,6 +110,8 @@ class _MeuFormState extends State<MeuForm> {
                 //Decoração
                 decoration: decoracaoPadrao(label: "Titulo"),
 
+                textCapitalization: TextCapitalization.sentences,
+
                 //Validação
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -154,8 +158,11 @@ class _MeuFormState extends State<MeuForm> {
               //
               //Valor
               TextFormField(
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+
                 //Decoração
                 decoration: decoracaoPadrao(label: "Valor"),
 
@@ -180,6 +187,8 @@ class _MeuFormState extends State<MeuForm> {
                 //Decoração
                 decoration: decoracaoPadrao(label: "Descrição"),
 
+                textCapitalization: TextCapitalization.sentences,
+
                 onSaved: (String? value) {
                   l.infos = value ?? " ";
                 },
@@ -201,7 +210,10 @@ class _MeuFormState extends State<MeuForm> {
                         Navigator.of(context).pop();
                       }
                     },
-                    child: const Text('Salvar'),
+                    child: Text(
+                      'Salvar',
+                      style: TextStyle(color: widget.tema),
+                    ),
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../assets/colors/my_colors.dart';
 
@@ -14,7 +15,7 @@ class SaldoLivre extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: MyColor.neonblue,
+        color: MyColor.berkeleyblue,
         borderRadius: BorderRadius.circular(20),
       ),
       height: 53,
@@ -36,7 +37,7 @@ class SaldoLivre extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "R\$$saldo",
+                  NumberFormat.simpleCurrency(decimalDigits: 2).format(saldo),
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,

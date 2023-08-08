@@ -31,6 +31,11 @@ class HomeController extends ChangeNotifier {
     db.updateDados();
   }
 
+  void apagarTodosItens() {
+    db.dados.clear();
+    notifyListeners();
+  }
+
   bool checaDados() {
     log("data: ${db.box.get("dados")}");
     if (db.box.get("dados") == null) {

@@ -12,9 +12,9 @@ class AddLancamento extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: MyColor.neonblue.shade100,
+        backgroundColor: MyColor.backgroung,
         appBar: AppBar(
-          backgroundColor: MyColor.neonblue.shade800,
+          backgroundColor: MyColor.caribeancurrent.shade800,
           iconTheme: const IconThemeData(color: Colors.white, size: 30),
         ),
         body: Center(
@@ -22,7 +22,7 @@ class AddLancamento extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Container(
               decoration: BoxDecoration(
-                color: MyColor.neonblue.shade500,
+                color: MyColor.tema,
                 borderRadius: BorderRadius.circular(20),
               ),
               height: altura * 0.7,
@@ -47,7 +47,7 @@ class AddLancamento extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 20,
-                            color: MyColor.neonblue.shade600,
+                            color: MyColor.caribeancurrent.shade600,
                           ),
                         ),
                       ),
@@ -58,7 +58,7 @@ class AddLancamento extends StatelessWidget {
                     //Formulário
                     const Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: MeuForm(),
+                      child: MeuForm(tema: MyColor.tema),
                     ),
                   ],
                 ),

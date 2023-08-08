@@ -19,7 +19,7 @@ class Botao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color padrao = Colors.white70;
+    Color padrao = Colors.white;
 
     return SizedBox(
       width: largura * 0.21,
@@ -33,12 +33,12 @@ class Botao extends StatelessWidget {
               onPressed: function,
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
-                backgroundColor: MyColor.neonblue.shade200,
+                backgroundColor: MyColor.caribeancurrent.shade100,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Icon(icone, color: padrao),
+              child: Icon(icone, color: MyColor.tema),
             ),
           ),
 
