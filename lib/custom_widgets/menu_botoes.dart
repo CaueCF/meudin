@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meudin/Controllers/home_controller.dart';
+import 'package:meudin/assets/colors/my_colors.dart';
 import 'package:meudin/custom_widgets/botao.dart';
 import 'package:meudin/pages/add_page.dart';
 
@@ -40,7 +41,7 @@ class MenuBotoes extends StatelessWidget {
 
           //
           Botao(
-            titulo: "-",
+            titulo: "",
             icone: Icons.wysiwyg,
             function: () {},
             largura: largura,
@@ -49,7 +50,7 @@ class MenuBotoes extends StatelessWidget {
 
           //
           Botao(
-            titulo: "-",
+            titulo: "",
             icone: Icons.wysiwyg,
             function: () {},
             largura: largura,
@@ -85,13 +86,24 @@ class AlertaApagar extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeController home = HomeController();
 
+    const TextStyle estilo = TextStyle(color: MyColor.caribeancurrent);
+
     return AlertDialog(
-      title: const Text("Atenção"),
+      title: const Center(
+          child: Text(
+        "Atenção",
+        style: TextStyle(
+          color: MyColor.berkeleyblueAccent,
+        ),
+      )),
       content: const Text("Tem certeza que deseja excluir todos os lançamentos?"),
-      actionsAlignment: MainAxisAlignment.spaceEvenly,
+      actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: <Widget>[
         ElevatedButton(
-          child: const Text("CANCELAR"),
+          child: const Text(
+            "CANCELAR",
+            style: estilo,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -101,7 +113,10 @@ class AlertaApagar extends StatelessWidget {
             home.apagarTodosItens();
             Navigator.of(context).pop();
           },
-          child: const Text("APAGAR"),
+          child: const Text(
+            "APAGAR",
+            style: estilo,
+          ),
         ),
       ],
     );

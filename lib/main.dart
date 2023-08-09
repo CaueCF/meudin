@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:meudin/assets/colors/my_colors.dart';
 import 'package:meudin/models/lancamento.dart';
-import 'package:meudin/pages/my_home_page.dart';
+import 'my_router.dart';
 
 void main() async {
   Intl.defaultLocale = 'pt-BR';
@@ -21,14 +21,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'MeuDin',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: MyColor.neonblue,
+        primarySwatch: MyColor.caribeancurrent,
       ),
-      home: const MyHomePage(title: 'Pagina inicial'),
+      routerConfig: myRouter,
     );
   }
 }

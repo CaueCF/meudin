@@ -26,14 +26,15 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void apagarTodosItens() {
+    db.dados.clear();
+    db.updateDados();
+    notifyListeners();
+  }
+
   void gerarDados() {
     db.criarDadosIniciais();
     db.updateDados();
-  }
-
-  void apagarTodosItens() {
-    db.dados.clear();
-    notifyListeners();
   }
 
   bool checaDados() {
