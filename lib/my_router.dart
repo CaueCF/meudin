@@ -20,10 +20,13 @@ final myRouter = GoRouter(
     ),
     GoRoute(
       name: 'infoPage',
-      path: '/infoPage/:altura/:largura/:cor/:icone/:lancamento',
-      builder: (context, state) => InfoPage(
-        infoSample: state.extra as InfoSample,
-      ),
+      path: '/infoPage',
+      builder: (context, state) {
+        InfoSample infoSample = state.extra as InfoSample;
+        return InfoPage(
+          infoSample: infoSample,
+        );
+      },
     ),
   ],
 );

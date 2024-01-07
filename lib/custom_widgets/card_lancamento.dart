@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-//import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:meudin/assets/colors/my_colors.dart';
 import 'package:meudin/models/infos.dart';
-import 'package:meudin/pages/info_page.dart';
+//import 'package:meudin/pages/info_page.dart';
 
 import '../models/lancamento.dart';
 

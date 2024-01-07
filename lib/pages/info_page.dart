@@ -4,23 +4,24 @@ import 'package:meudin/Controllers/home_controller.dart';
 import 'package:meudin/assets/colors/my_colors.dart';
 import 'package:meudin/models/infos.dart';
 import 'package:meudin/models/lancamento.dart';
+import 'package:go_router/go_router.dart';
 
 class InfoPage extends StatelessWidget {
-  const InfoPage({
+  InfoPage({
     super.key,
-    required this.infoSample,
+    this.infoSample,
   });
 
-  final InfoSample infoSample;
+  InfoSample? infoSample;
 
   @override
   Widget build(BuildContext context) {
     HomeController home = HomeController();
 
-    double altura = infoSample.altura, largura = infoSample.largura;
-    IconData icone = infoSample.icone;
-    Color cor = infoSample.cor;
-    Lancamento l = infoSample.lancamento;
+    double altura = infoSample!.altura, largura = infoSample!.largura;
+    IconData icone = infoSample!.icone;
+    Color cor = infoSample!.cor;
+    Lancamento l = infoSample!.lancamento;
 
     Color custo = l.io ? MyColor.ganho : MyColor.gasto;
 
@@ -152,79 +153,77 @@ class InfoValorTitulo extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> d = l.data.split(" ");
 
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 18.0, left: 18),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //
-            //Titulo
-            Text(
-              l.titulo,
+    return Padding(
+      padding: const EdgeInsets.only(top: 18.0, left: 18),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //
+          //Titulo
+          Text(
+            l.titulo,
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          //Data
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.calendar_today, size: 30),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 2,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      d.elementAt(0),
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Text(
+                      d.elementAt(1),
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+          //Preço
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 10,
+            ),
+            decoration: BoxDecoration(
+              color: custo,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              "${l.io ? "" : "-"}${NumberFormat.simpleCurrency(
+                decimalDigits: 2,
+              ).format(l.preco)}",
+              maxLines: 1,
               style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                //fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
-
-            //Data
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.calendar_today, size: 30),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 2,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        d.elementAt(0),
-                        style: const TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        d.elementAt(1),
-                        style: const TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            //Preço
-            Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 4,
-                horizontal: 10,
-              ),
-              decoration: BoxDecoration(
-                color: custo,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Text(
-                "${l.io ? "" : "-"}${NumberFormat.simpleCurrency(
-                  decimalDigits: 2,
-                ).format(l.preco)}",
-                maxLines: 1,
-                style: const TextStyle(
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -256,8 +255,8 @@ class AlertaApagar extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             home.apagaItem(l);
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
+            context.pop();
+            context.pop();
           },
           child: const Text("APAGAR"),
         ),
