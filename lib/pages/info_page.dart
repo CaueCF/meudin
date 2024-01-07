@@ -2,27 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:meudin/Controllers/home_controller.dart';
 import 'package:meudin/assets/colors/my_colors.dart';
-import 'package:meudin/models/infos.dart';
 import 'package:meudin/models/lancamento.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({
     super.key,
-    required this.infoSample,
+    required this.altura,
+    required this.largura,
+    required this.icone,
+    required this.cor,
+    required this.custo,
+    required this.l,
   });
 
-  final InfoSample infoSample;
+  final double altura, largura;
+  final IconData icone;
+  final Color cor, custo;
+  final Lancamento l;
 
+/*
+
+ARRUMAR O CONTROLLER NA PÁGINA
+
+*/
   @override
   Widget build(BuildContext context) {
     HomeController home = HomeController();
-
-    double altura = infoSample.altura, largura = infoSample.largura;
-    IconData icone = infoSample.icone;
-    Color cor = infoSample.cor;
-    Lancamento l = infoSample.lancamento;
-
-    Color custo = l.io ? MyColor.ganho : MyColor.gasto;
 
     //
     return SafeArea(

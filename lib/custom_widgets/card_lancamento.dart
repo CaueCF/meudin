@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 //import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:meudin/assets/colors/my_colors.dart';
-import 'package:meudin/models/infos.dart';
 import 'package:meudin/pages/info_page.dart';
 
 import '../models/lancamento.dart';
@@ -55,27 +53,19 @@ class CardLancamento extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
       child: GestureDetector(
         onTap: () {
-          InfoSample infoSample = InfoSample(
-            icone: icone,
-            cor: cor,
-            lancamento: l,
-            altura: altura,
-            largura: largura,
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InfoPage(
+                altura: altura,
+                largura: largura,
+                cor: cor,
+                icone: icone,
+                custo: l.io ? MyColor.ganho : MyColor.gasto,
+                l: l,
+              ),
+            ),
           );
-
-          context.goNamed('infoPage', extra: infoSample);
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => InfoPage(
-          //       altura: altura,
-          //       largura: largura,
-          //       cor: cor,
-          //       icone: icone,
-          //       l: l,
-          //     ),
-          //   ),
-          // );
         },
         child: Container(
 
