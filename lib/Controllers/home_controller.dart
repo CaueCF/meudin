@@ -33,6 +33,7 @@ class HomeController extends ChangeNotifier {
 
   void apagarTodosItens() {
     db.dados.clear();
+    db.updateDados();
     notifyListeners();
   }
 

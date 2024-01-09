@@ -94,7 +94,7 @@ class AlertaApagar extends StatelessWidget {
         child: Text(
           "Atenção",
           style: TextStyle(
-            color: MyColor.berkeleyblueAccent,
+            color: MyColor.caribeancurrent,
           ),
         ),
       ),
